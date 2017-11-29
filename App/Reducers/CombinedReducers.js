@@ -3,7 +3,7 @@ import { LoginReducers } from './LoginReducer';
 
 
 export function rootReducer() {
- return combineReducers( {
+  return combineReducers({
     LoginReducers,
   });
-} 
+}

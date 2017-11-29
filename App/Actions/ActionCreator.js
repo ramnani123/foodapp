@@ -5,7 +5,7 @@ import {
     NetworkManager
 } from '../Networking/NetworkManager';
 import Api from '../Networking/APIS';
-import {Actions} from 'react-native-router-flux';
+import {httpMethodes} from '../Constants/Constants';
 
 export const actionCreators = {
     getData: () => {
@@ -26,25 +26,17 @@ export const actionCreators = {
     }
 }
 
-export default function request(url, httpMethode, heders, parameters) {
-    if (httpMethode == Api.httpMethode.get) {
-        return (dispatch) => {
-            dispatch(actionCreators.getData())
-            NetworkManager.get(url).then((response) => {
-                dispatch(actionCreators.getDataSuccess(response))
-            })
-        }
-    } else {
-        return (dispatch) => {
-            dispatch(actionCreators.getData())
-            NetworkManager.post(url, httpMethode, heders, parameters).then((response) => {
-                console.log('res', response)
-                dispatch(actionCreators.getDataSuccess(response))
-                console.log('Go home', response)
-                Actions.home(response)
-            }).catch((error) => {
-                console.log('er', error)
-            })
-        }
+export default function request(url, httpMethode: httpMethodes, parameters) {
+    return (dispatch) => {
+        dispatch(actionCreators.getData())
+        return NetworkManager.request(url, httpMethode, parameters).then((response) => {
+            if (response.ok) {
+                dispatch(actionCreators.getDataSuccess(response.data))
+            } else {
+                dispatch(actionCreators.getDataFailure())
+            }
+            return response.ok
+        })
     }
+
 }

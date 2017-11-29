@@ -7,6 +7,8 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"apisauce": "^0.14.2",
+		"axios": "^0.17.1",
 		"i": "^0.3.6",
 		"react": "16.0.0",
 		"react-native": "0.50.4",

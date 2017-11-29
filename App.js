@@ -15,7 +15,7 @@ import Route from './App/Router/Routes';
 
 const Store = configureStore();
 
-export default class App extends Component < {} > {
+export default class App extends Component <{}> {
 
     render() {
       return (

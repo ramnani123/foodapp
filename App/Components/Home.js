@@ -4,7 +4,8 @@ import { Actions } from 'react-native-router-flux';
 
 class Home extends React.Component {
         componentDidMount() {
-            console.log('Home', Actions.state)
+            const { logIn } = this.props;
+            console.log('Home', logIn)
         }
     
 render() {
