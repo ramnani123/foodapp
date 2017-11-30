@@ -1,0 +1,9 @@
+{
+    "git.ignoreLimitWarning": true,
+    "vs-color-picker.autoLaunchDelay": 10,    
+    "css.fileExtensions": [
+        "css",
+        "scss",
+        "js"
+      ]
+}

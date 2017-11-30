@@ -1,33 +1,36 @@
 {
-	"name": "MOdOne",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"apisauce": "^0.14.2",
-		"axios": "^0.17.1",
-		"i": "^0.3.6",
-		"react": "16.0.0",
-		"react-native": "0.50.4",
-		"react-native-router-flux": "^4.0.0-beta.24",
-		"react-redux": "^5.0.6",
-		"redux": "^3.7.2",
-		"redux-observable": "^0.17.0",
-		"redux-promise-middleware": "^5.0.0",
-		"redux-saga": "^0.16.0",
-		"redux-thunk": "^2.2.0",
-		"rxjs": "^5.5.2"
-	},
-	"devDependencies": {
-		"babel-jest": "21.2.0",
-		"babel-preset-react-native": "4.0.0",
-		"jest": "21.2.1",
-		"react-test-renderer": "16.0.0"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "MOdOne",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "apisauce": "^0.14.2",
+    "axios": "^0.17.1",
+    "i": "^0.3.6",
+    "lottie-react-native": "2.2.7",
+    "react": "16.0.0",
+    "react-native": "0.50.4",
+    "react-native-floating-labels": "^1.1.6",
+    "react-native-material-textfield": "^0.10.3",
+    "react-native-router-flux": "^4.0.0-beta.24",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.17.0",
+    "redux-promise-middleware": "^5.0.0",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
+    "rxjs": "^5.5.2"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }

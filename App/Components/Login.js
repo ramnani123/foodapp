@@ -1,57 +1,64 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Button, FlatList, Dimensions, TextInput } from 'react-native';
+import { View, Text, Dimensions, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import  request  from '../Actions/ActionCreator';
 import Api from '../Networking/APIS';
 import {httpMethodes} from '../Constants/Constants';
 import {Actions} from 'react-native-router-flux';
+import AnimationsScreen from '../UIElements/ActivityLoder';
+import { TextField } from 'react-native-material-textfield';
 
-class Login extends Component {
+
+class Login extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            username: '',
-            password: ''
+            username: 'Username',
+            password: 'Password'
         };
     }
-   componentDidMount() {
-       console.log(this.PropTypes)
-   }
-   onClickLogin = () => {
-       const {
-           dispatch
-       } = this.props;
-       let parameters = {
-           'user_email': 'ram.gangadhar@credencys.com',
-           'password': '123456'
-       };
-       console.log(parameters)
-       dispatch(request(Api.logInAPI, httpMethodes.post, parameters)).then((status) => {
-           if (status) {
-               console.log(this.props.logIn)
-               Actions.home()
-           } else {
-               console.log('error')
-           }
-       })
-   }
+    componentDidMount() {
+       
+    }
+    onClickLogin = () => {
+        const {
+            dispatch
+        } = this.props;
+        let parameters = {
+            'user_email': 'ram.gangadhar@credencys.com',
+            'password': '123456'
+        };
+        console.log(this.state.username, this.state.password)
+        dispatch(request(Api.logInAPI, httpMethodes.post, parameters)).then((status) => {
+            if (status) {
+                   Actions.home()
+            } else {
+                console.log('error')
+            }
+        })
+    }
 
 
     render() {
         return (
-            <View style = {{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style = {{ justifyContent: 'center', alignItems: 'center', height: 150, width: 200, backgroundColor: 'green' }}>
-            <View style = {{backgroundColor: 'white', height: 30, width: 150}}>
-            <TextInput style = {{height: 30}} placeholder = 'Username' onChangeText = {(text)=>this.setState({username: text})}/>
+            <ScrollView>
+            <View style = {{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{width: Dimensions.get('window').width*0.8, height: Dimensions.get('window').height*0.35, backgroundColor: 'black' }}>
+                    <Image/>    
                 </View>
-                    <View style = {{backgroundColor: 'white', height: 30, width: 150, margin: 10}}>
-                    <TextInput style = {{height: 30}} placeholder = 'Password' onChangeText = {(text)=>this.setState({password: text})}/>
-                    </View>
-                    <Button title = 'Login' onPress = {() => { this.onClickLogin() }} />
+                <View style={{width: Dimensions.get('window').width*0.8}}>  
+                    <TextField label='Username' tintColor='black'/>
                 </View>
-                { this.props.logIn.isLogin ? (<Text>Loading...</Text>) : (<Text></Text>) }
+                <View style={{width: Dimensions.get('window').width*0.8}}> 
+                    <TextField label='Password'tintColor='black'/>
+                </View>
+                <View style={{width: Dimensions.get('window').width*0.8, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center', height: 40}}> 
+                    <Text style={{width: Dimensions.get('window')*0.8, color: 'white'}}>Login</Text>
+                </View>
+                {this.props.logIn.isLogin ? ( <Text>loading...</Text> ) : (<Text></Text>) }
             </View>
+            </ScrollView>
         );
     }
 }
@@ -61,3 +68,4 @@ function mapStateToProps(state) {
     };
 }
 export default connect(mapStateToProps)(Login);
+
