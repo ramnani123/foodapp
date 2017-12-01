@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { APIActions } from '../Actions/APIActions';
 import { actionCreators } from '../Actions/ActionCreator';
-import Api from './APIS';
 import { create } from 'apisauce';
 import { httpMethodes, headers } from '../Constants/Constants';
 

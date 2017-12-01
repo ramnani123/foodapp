@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import  request  from '../Actions/ActionCreator';
-import Api from '../Networking/NetworkManager';
+import Api from '../Networking/APIS';
 import {httpMethodes} from '../Constants/Constants';
 import {Actions} from 'react-native-router-flux';
 import { TextField } from 'react-native-material-textfield';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import styles from '../Styles/LoginStyles';
 
 class Login extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Login extends React.Component {
         this.state = {
             username: 'Username',
             password: 'Password',
+            phonenumber: '1234567890',
             signup: false,
             forgotpassword: false,
             buttonText: 'Login'
@@ -25,9 +27,10 @@ class Login extends React.Component {
         const {
             dispatch
         } = this.props;
+      
         let parameters = {
-            'user_email': 'ram.gangadhar@credencys.com',
-            'password': '123456'
+            'user_email': this.state.phonenumber,
+            'password': this.state.password
         };
         console.log(this.state.username, this.state.password)
         dispatch(request(Api.logInAPI, httpMethodes.post, parameters)).then((response) => {
@@ -37,46 +40,41 @@ class Login extends React.Component {
                 console.log('error')
             }
         })
-    }
-
-    onClickSignup() {
-     console.log('onclick') 
-    }
-
+    } 
     
     render() {
         return (
-            <View style = {{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
-                <KeyboardAwareScrollView keyboardOpeningTime={100} extraScrollHeight={20} scrollEnabled={false} showsVerticalScrollIndicator={false}  style = {{margin: 8, height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
-                    <View style={{width: Dimensions.get('window').width*0.8, height: Dimensions.get('window').height*0.4, alignItems: 'center', paddingTop: Dimensions.get('window').height*0.15, justifyContent: 'center', paddingLeft: 25 }}>
-                        <Image source={require('../Images/Food.png')} style={{width: Dimensions.get('window').width*0.8, height: (Dimensions.get('window').height)*0.3, resizeMode: Image.resizeMode.contain}}/>    
+            <View style = {styles.container}>
+                <KeyboardAwareScrollView keyboardOpeningTime={100} extraScrollHeight={20} scrollEnabled={false} showsVerticalScrollIndicator={false}  style = {styles.keyboardAwareScrollView}>
+                    <View style={styles.imageView}>
+                        <Image source={require('../Images/Food.png')} style={styles.image}/>    
                     </View>
-                    <View style={{paddingTop: 15, margin: 20}}>
-                        <View style={{width: Dimensions.get('window').width*0.9}}>  
-                            <TextField label='Phone Number' tintColor='black'/>
+                    <View style={styles.loginContainer}>
+                        <View style={styles.textFeild}>  
+                            <TextField label='Phone Number' tintColor='black' onChangeText={(text) => this.setState({phonenumber: text})} />
                         </View>
-                        {this.state.signup ? (<View style={{width: Dimensions.get('window').width*0.9}}> 
-                            <TextField label='User name'tintColor='black'/>
+                        {this.state.signup ? (<View style={styles.textFeild}> 
+                            <TextField label='User name'tintColor='black'onChangeText={(text) => this.setState({username: text})}/>
                         </View>): null}
-                        <View style={{width: Dimensions.get('window').width*0.9}}> 
-                            <TextField label='Password'tintColor='black'/>
+                        <View style={styles.textFeild}> 
+                            <TextField label='Password' tintColor='black' secureTextEntry={true} onChangeText={(text) => this.setState({password: text})}/>
                         </View>
                         <TouchableOpacity onPress={!this.state.signup ? (this.onClickLogin): null} >
-                            <View style={{marginTop: 44, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center', height: 44, borderRadius: 5}}>
-                                <Text style={{color: 'white'}}>{this.state.buttonText}</Text>
+                            <View style={styles.button}>
+                                <Text style={styles.buttonText}>{this.state.buttonText}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     {this.props.logIn.isLogin ? ( <Text>loading...</Text> ) : (<Text></Text>) }
                 </KeyboardAwareScrollView>
-                <View style={{ backgroundColor: 'black', alignItems: 'center', justifyContent: 'center', height: 44, flexDirection: 'row', width: Dimensions.get('window').width}}>
+                <View style={styles.bottomView}>
                     <TouchableOpacity onPress={()=>{this.setState({signup: !this.state.signup, buttonText: this.state.signup ? 'Login': 'Signup'})}}>
-                        <View style={{  alignItems: 'center', justifyContent: 'center', height: 43, backgroundColor: 'white', width: Dimensions.get('window').width*0.5, marginRight:1}}>
+                        <View style={styles.bottomButton}>
                             <Text>Signup</Text>
                         </View>
                     </TouchableOpacity >
                     <TouchableOpacity onPress={()=>{this.setState({forgotpassword: true})}}>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', height: 43, backgroundColor: 'white', width: Dimensions.get('window').width*0.5}}>
+                        <View style={styles.bottomButton}>
                             <Text>Forgot Password</Text>
                         </View>
                     </TouchableOpacity>
