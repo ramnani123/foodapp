@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, FlatList, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import styles from '../Styles/HomeStyles';
 
 class Home extends Component {
         componentDidMount() {
@@ -10,19 +11,19 @@ class Home extends Component {
         static navigationOptions = { headerLeft:null }
 
         onClickQRScan() {
-            Actions.qrcode()
+            Actions.qrScreen()
         }
         
 render() {
     return (
-        <View style = {{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingTop: 20, paddingBottom: 20 }}>
+        <View style = {styles.container}>
         <TouchableOpacity onPress={()=>{this.onClickQRScan()}}>
-        <View style={{ borderRadius: 5, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', margin: Dimensions.get('window').height*0.02, height: Dimensions.get('window').height*0.4, width: Dimensions.get('window').width*0.9 }}> 
+        <View style={styles.button}> 
         <Text>QRCode</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity>
-        <View style={{ borderRadius: 5, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', margin: Dimensions.get('window').height*0.02, height: Dimensions.get('window').height*0.4, width: Dimensions.get('window').width*0.9 }}> 
+        <View style={styles.button}> 
         <Text>BookTable</Text>
         </View>
         </TouchableOpacity>

@@ -4,8 +4,7 @@ import {
     Image
 } from 'react-native';
 import React, {
-    Component,
-    PropTypes
+    Component
 } from 'react';
 
 const styles = StyleSheet.create({

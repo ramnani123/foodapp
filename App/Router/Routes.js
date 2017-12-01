@@ -3,12 +3,14 @@ import Login from '../Components/Login';
 import Home from '../Components/Home';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import QRScanning from '../Components/QRScreen';
 
 const Route = () => (
     <Router>
       <Stack key="root" navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} tintColor='white'>
         <Scene key="Login" component={Login} title="" hideNavBar={true}/>
         <Scene key="home" component={Home} title="Home"/>
+        <Scene key="qrScreen" component={QRScanning} title="Scan QR Code"/>
       </Stack>
     </Router>
   );
