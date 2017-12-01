@@ -35,7 +35,7 @@ export default function request(url, httpMethode: httpMethodes, parameters) {
             } else {
                 dispatch(actionCreators.getDataFailure())
             }
-            return response.ok
+            return response
         })
     }
 

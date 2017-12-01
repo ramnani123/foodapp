@@ -1,5 +1,5 @@
 {
-  "name": "MOdOne",
+  "name": "FoodieFasterDemo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,12 +8,9 @@
   },
   "dependencies": {
     "apisauce": "^0.14.2",
-    "axios": "^0.17.1",
-    "i": "^0.3.6",
-    "lottie-react-native": "2.2.7",
     "react": "16.0.0",
     "react-native": "0.50.4",
-    "react-native-floating-labels": "^1.1.6",
+    "react-native-keyboard-aware-scroll-view": "^0.4.1",
     "react-native-material-textfield": "^0.10.3",
     "react-native-router-flux": "^4.0.0-beta.24",
     "react-redux": "^5.0.6",

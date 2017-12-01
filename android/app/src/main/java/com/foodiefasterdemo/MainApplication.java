@@ -1,10 +1,8 @@
-package com.modone;
+package com.foodiefasterdemo;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.airbnb.android.react.lottie.LottiePackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -24,9 +22,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new LottiePackage(),
-            new RNSpinkitPackage()
+          new MainReactPackage()
       );
     }
 
