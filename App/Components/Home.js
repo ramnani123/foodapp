@@ -11,7 +11,11 @@ class Home extends Component {
         static navigationOptions = { headerLeft:null }
 
         onClickQRScan() {
-            Actions.qrScreen()
+            Actions.qrScreen();
+        }
+
+        onClickBookFromHome() {
+            Actions.bookfromhome();
         }
         
 render() {
@@ -22,7 +26,7 @@ render() {
         <Text>QRCode</Text>
         </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{this.onClickBookFromHome()}}>
         <View style={styles.button}> 
         <Text>BookTable</Text>
         </View>

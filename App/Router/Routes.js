@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import QRScanning from '../Components/QRModule/QRScreen';
 import LoginModule from '../Components/LoginModule/LoginModule';
+import BookATable from '../Components/HomeModule/BookATableScreen';
 
 const Route = () => (
     <Router>
@@ -13,6 +14,7 @@ const Route = () => (
         <Scene key="Login" component={Login} title="" hideNavBar={true}/>
         <Scene key="home" component={Home} title="Home"/>
         <Scene key="qrScreen" component={QRScanning} title="Scan QR Code"/>
+        <Scene key="bookfromhome" component={BookATable} title="Book A Table" initial={true}/>
       </Stack>
     </Router>
   );

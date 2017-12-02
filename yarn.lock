@@ -3461,6 +3461,10 @@ react-native-material-textfield@^0.10.3:
   dependencies:
     prop-types "^15.5.9"
 
+react-native-modal-dropdown@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-dropdown/-/react-native-modal-dropdown-0.5.0.tgz#f6c4cd4d077792e56902b43b14d83959f5f40f46"
+
 react-native-qrcode-scanner@^0.0.25:
   version "0.0.25"
   resolved "https://registry.yarnpkg.com/react-native-qrcode-scanner/-/react-native-qrcode-scanner-0.0.25.tgz#ce43bd423d8ffe843b5258baf3ef06d25b1fea5f"
