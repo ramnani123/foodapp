@@ -17,17 +17,16 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width
     },
     keyboardAwareScrollView: {
-        margin: 8,
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
+        height: '100%',
+        width: '100%'
     },
     imageView: {
-        width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.4,
+        // width: Dimensions.get('window').width * 0.8,
+        // height: Dimensions.get('window').height * 0.4,
         alignItems: 'center',
-        paddingTop: Dimensions.get('window').height * 0.15,
+        // paddingTop: Dimensions.get('window').height * 0.08,
         justifyContent: 'center',
-        paddingLeft: 25
+        margin: 25
     },
     image: {
         width: Dimensions.get('window').width * 0.8,
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
         resizeMode: Image.resizeMode.contain
     },
     loginContainer: {
-        paddingTop: 15,
+        paddingTop: 0,
         margin: 20
     },
     textFeild: {
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
         height: 43,
         backgroundColor: 'white',
         width: Dimensions.get('window').width * 0.5,
-        marginRight: 1
+        marginRight: 0.5
     },
 
 })

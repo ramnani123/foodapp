@@ -1,27 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Dimensions, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import  request  from '../Actions/ActionCreator';
-import Api from '../Networking/APIS';
-import {httpMethodes} from '../Constants/Constants';
+import  request  from '../../Actions/ActionCreator';
+import Api from '../../Networking/APIS';
+import {httpMethodes} from '../../Constants/Constants';
 import {Actions} from 'react-native-router-flux';
 import { TextField } from 'react-native-material-textfield';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import styles from '../Styles/LoginStyles';
+import styles from '../../Styles/LoginStyles';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
+        constructor(props) {
+            super(props);
 
-        this.state = {
-            username: 'Username',
-            password: 'Password',
-            phonenumber: '1234567890',
-            signup: false,
-            forgotpassword: false,
-            buttonText: 'Login'
-        };
-    }
+            this.state = {
+                username: 'Username',
+                password: 'Password',
+                phonenumber: '1234567890',
+                signup: false,
+                forgotpassword: false,
+                buttonText: 'Login'
+            };
+        }
 
     onClickLogin = () => {
         const {
@@ -44,11 +44,8 @@ class Login extends React.Component {
     
     render() {
         return (
-            <View style = {styles.container}>
-                <KeyboardAwareScrollView keyboardOpeningTime={100} extraScrollHeight={20} scrollEnabled={false} showsVerticalScrollIndicator={false}  style = {styles.keyboardAwareScrollView}>
-                    <View style={styles.imageView}>
-                        <Image source={require('../Images/Food.png')} style={styles.image}/>    
-                    </View>
+            <View style={styles.container}>            
+            <KeyboardAwareScrollView keyboardOpeningTime={100} extraScrollHeight={20} scrollEnabled={true} showsVerticalScrollIndicator={false}  style = {styles.keyboardAwareScrollView}>
                     <View style={styles.loginContainer}>
                         <View style={styles.textFeild}>  
                             <TextField label='Phone Number' tintColor='black' onChangeText={(text) => this.setState({phonenumber: text})} />
@@ -66,23 +63,12 @@ class Login extends React.Component {
                         </TouchableOpacity>
                     </View>
                     {this.props.logIn.isLogin ? ( <Text>loading...</Text> ) : (<Text></Text>) }
-                </KeyboardAwareScrollView>
-                <View style={styles.bottomView}>
-                    <TouchableOpacity onPress={()=>{this.setState({signup: !this.state.signup, buttonText: this.state.signup ? 'Login': 'Signup'})}}>
-                        <View style={styles.bottomButton}>
-                            <Text>Signup</Text>
-                        </View>
-                    </TouchableOpacity >
-                    <TouchableOpacity onPress={()=>{this.setState({forgotpassword: true})}}>
-                        <View style={styles.bottomButton}>
-                            <Text>Forgot Password</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            </KeyboardAwareScrollView>
             </View>
         );
     }
 }
+
 function mapStateToProps(state) {
     return {
         logIn: state.LoginReducers
