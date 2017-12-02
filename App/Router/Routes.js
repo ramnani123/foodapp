@@ -3,7 +3,7 @@ import Login from '../Components/LoginModule/Login';
 import Home from '../Components/Home';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import QRScanning from '../Components/QRScreen';
+import QRScanning from '../Components/QRModule/QRScreen';
 import LoginModule from '../Components/LoginModule/LoginModule';
 
 const Route = () => (
