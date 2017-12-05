@@ -12,26 +12,8 @@ import TabBar from 'react-native-underline-tabbar';
 import styles from '../../Styles/LoginStyles';
 import Login from '../LoginModule/Login';
 import Signup from '../LoginModule/Signup';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    fontSize: 28,
-  },
-});
 class LoginModule extends Component {
   componentWillMount() {
     const { page } = this.props;
@@ -40,6 +22,11 @@ class LoginModule extends Component {
   render() {
     return (
       <View style={[styles.container]}>
+      <KeyboardAwareScrollView keyboardOpeningTime={100}
+          extraScrollHeight={20}
+          scrollEnabled={false}
+          showsVerticalScrollIndicator={false}
+          style={styles.keyboardAwareScrollView}>
         <View style={{height: '30%', width: '100%', paddingTop: 15}}>
           <View style={styles.imageView}>
             <Image source={require('../../Images/Food.png')} style={styles.image}/>    
@@ -52,6 +39,7 @@ class LoginModule extends Component {
             <Signup tabLabel={{label: "Signup"}}/>
           </ScrollableTabView>
         </View>
+        </KeyboardAwareScrollView>
         </View>
     );
   }
