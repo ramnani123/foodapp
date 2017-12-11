@@ -4,9 +4,8 @@ import React, {Component} from 'react';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,0)',
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
   },
@@ -22,9 +21,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 25,
   },
+  backgroundImage: {
+    backgroundColor: 'red',
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: Image.resizeMode.cover,
+  },
   image: {
-    width: Dimensions.get('window').width * 0.8,
-    height: Dimensions.get('window').height * 0.3,
+    width: '80%',
+    height: '100%',
     resizeMode: Image.resizeMode.contain,
   },
   loginContainer: {
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 43,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,0)',
     width: Dimensions.get('window').width * 0.5,
     marginRight: 0.5,
   },

@@ -10,18 +10,20 @@ import React, {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: '100%',
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        paddingBottom: 20
+        paddingBottom: 20,
     },
     button: {
         borderRadius: 5,
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: Dimensions.get('window').height * 0.02,
-        height: Dimensions.get('window').height * 0.4,
+        margin: 10,
+        height: Dimensions.get('window').height * 0.35,
         width: Dimensions.get('window').width * 0.9
     },
 

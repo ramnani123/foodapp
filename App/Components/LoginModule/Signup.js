@@ -37,10 +37,8 @@ class Signup extends React.Component {
       phoneNumber: this.state.phonenumber,
       password: this.state.password,
     };
-    console.log(this.state.username, this.state.password);
     dispatch(request(Api.registration, httpMethodes.post, parameters)).then(
       response => {
-        console.log(response);
         if (response.ok) {
           this.setState({submitSuccess: true});
         } else {
@@ -63,7 +61,7 @@ class Signup extends React.Component {
             <View style={styles.loginContainer}>
               <View style={styles.textFeild}>
                 <TextField
-                  keyboardType='numeric'
+                  keyboardType="numeric"
                   enablesReturnKeyAutomatically={true}
                   label="Enter OTP"
                   tintColor="black"
@@ -84,7 +82,7 @@ class Signup extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView
           keyboardOpeningTime={100}
-          scrollEnabled={true}
+          scrollEnabled={false}
           showsVerticalScrollIndicator={false}
           style={styles.keyboardAwareScrollView}
         >
@@ -98,7 +96,7 @@ class Signup extends React.Component {
             </View>
             <View style={styles.textFeild}>
               <TextField
-                keyboardType='numeric'
+                keyboardType="numeric"
                 label="Phone number"
                 tintColor="black"
                 onChangeText={text => this.setState({username: text})}

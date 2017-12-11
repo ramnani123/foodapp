@@ -1,37 +1,49 @@
-import React, { Component } from 'react';
-import { View, Text, Button, FlatList, Dimensions, TextInput, TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 import styles from '../Styles/HomeStyles';
 
+console.disableYellowBox = true;
+
 class Home extends Component {
-        componentDidMount() {
-            const { data } = this.props;
-            console.log('Home', data.user)
-        }
-        static navigationOptions = { headerLeft:null }
 
-        onClickQRScan() {
-            Actions.qrScreen();
-        }
+  componentDidMount() {
+  }
 
-        onClickBookFromHome() {
-            Actions.bookfromhome();
-        }
-        
-render() {
+  onClickQRScan() {
+    Actions.qrScreen();
+  }
+
+  onClickBookFromHome() {
+    Actions.bookfromhome();
+  }
+
+  render() {
     return (
-        <View style = {styles.container}>
-        <TouchableOpacity onPress={()=>{this.onClickQRScan()}}>
-        <View style={styles.button}> 
-        <Text>QRCode</Text>
-        </View>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            this.onClickQRScan();
+          }}
+        >
+          <View style={styles.button}>
+            <Text>QRCode</Text>
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{this.onClickBookFromHome()}}>
-        <View style={styles.button}> 
-        <Text>BookTable</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            this.onClickBookFromHome();
+          }}
+        >
+          <View style={styles.button}>
+            <Text>BookTable</Text>
+          </View>
         </TouchableOpacity>
-        </View>
+      </View>
     );
   }
 }

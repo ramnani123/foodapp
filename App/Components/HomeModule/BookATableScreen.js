@@ -30,8 +30,7 @@ class BookATable extends React.Component {
 
   _handleDatePicked = date => {
     Moment.locale('en');    
-    console.log(date)
-    this.setState({selectedDateAndTime:  Moment(date).format('LLLL')})
+    this.setState({selectedDateAndTime:  Moment(date).format('ddd/MM/YY hh:mm A')})
     this._hideDateTimePicker();
   };
   render() {

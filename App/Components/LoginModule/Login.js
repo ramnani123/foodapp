@@ -34,19 +34,20 @@ class Login extends React.Component {
   }
 
   validation = () => {
-    let feilds = [this.state.phonenumber, this.state.password];
-    feilds.forEach(value => {
-      if (value == '') {
-        this.state.validations = false
-    } else {
-        this.state.validations = true
-      }
-    });
-      if (this.state.validations) {
-        this.onClickLogin() 
-      } else {
-        Alert.alert('Feilds Should not be empty');               
-      }
+    Actions.tabbar()    
+    // let feilds = [this.state.phonenumber, this.state.password];
+    // feilds.forEach(value => {
+    //   if (value == '') {
+    //     this.state.validations = false
+    // } else {
+    //     this.state.validations = true
+    //   }
+    // });
+    //   if (this.state.validations) {
+    //     this.onClickLogin() 
+    //   } else {
+    //     Alert.alert('Feilds Should not be empty');               
+    //   }
   }
 
 
@@ -58,7 +59,6 @@ class Login extends React.Component {
       };
       dispatch(request(Api.logInAPI, httpMethodes.post, parameters)).then(
         response => {
-            console.log(response)
           if (response.data.otp) {
             if (response.ok) {
               Actions.home(response);
