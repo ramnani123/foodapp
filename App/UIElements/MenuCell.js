@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 
 export class MenuCell extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -17,16 +14,15 @@ export class MenuCell extends Component {
 
   increment = () => {
     this.setState({count: this.state.count + 1}),
-      console.log('incData', this.props);
+      this.props.increment(1);
   };
   decrement = () => {
-    this.setState({count: this.state.count - 1}),
-      console.log('incData', this.props);
+    if (this.state.count > 0) {
+      this.setState({count: this.state.count - 1});
+      this.props.decrement(1);
+    }
   };
-  storeRowRef(rowRef) {
-    console.log(rowRef);
-    // this.rowRefs.push(rowRef);
-  }
+
   render() {
     return (
       <View

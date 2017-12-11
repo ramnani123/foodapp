@@ -31,7 +31,6 @@ const Route = () => (
         key="loginmodule"
         component={LoginModule}
         hideNavBar={true}
-        initial={false}
       />
       <Scene
         key="tabbar"
@@ -39,6 +38,7 @@ const Route = () => (
         swipeEnabled={true}
         hideNavBar={true}
         showLabel={false}
+        tabBarPosition={'bottom'}
       >
         <Scene
           key="Home"
@@ -72,7 +72,7 @@ const Route = () => (
         component={MenuContainer}
         title="Menu"
         hideNavBar={false}
-        initial={true}
+        initial={true}                        
       />
     </Stack>
   </Router>

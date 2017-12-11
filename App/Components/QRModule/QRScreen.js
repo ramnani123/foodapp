@@ -7,6 +7,7 @@ import {
   NavigatorIOS,
   TouchableOpacity,
   Linking,
+  Dimensions,
 } from 'react-native';
 import Camera from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -25,38 +26,19 @@ class QRScanning extends Component {
       <View
         style={{
           flex: 1,
-          width: '100%',
-          height: '100%',
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
           justifyContent: 'center',
+          alignItems: 'center',
           backgroundColor: 'black',
         }}
       >
-        <View style={{width: '50%', height: '50%'}}>
+        <View style={{width: Dimensions.get('window').width*0.8, height: Dimensions.get('window').height*0.5, border: 1  }}>
           <QRCodeScanner onRead={this.onSuccess.bind(this)} />
         </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40,
-  },
-});
 
 export default QRScanning;

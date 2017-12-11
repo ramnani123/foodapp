@@ -22,14 +22,19 @@ class LoginModule extends Component {
           source={require('../../Images/foodappBackground.png')}
           style={styles.backgroundImage}
         />
-
         <KeyboardAwareScrollView
           keyboardOpeningTime={100}
           scrollEnabled={false}
           showsVerticalScrollIndicator={false}
           style={styles.keyboardAwareScrollView}
         >
-          <View style={{height: '30%', width: '100%', paddingTop: 15}}>
+          <View
+            style={{
+              height: Dimensions.get('window').height * 0.3,
+              width: Dimensions.get('window').width,
+              paddingTop: 15,
+            }}
+          >
             <View style={styles.imageView}>
               <Image
                 source={require('../../Images/Food.png')}
@@ -37,7 +42,7 @@ class LoginModule extends Component {
               />
             </View>
           </View>
-          <View style={{height: '60%'}}>
+          <View style={{height: Dimensions.get('window').height * 0.6}}>
             <ScrollableTabView
               tabBarActiveTextColor="white"
               renderTabBar={() => (
@@ -46,8 +51,7 @@ class LoginModule extends Component {
                   tabBarStyle={{justifyContent: 'center', alignItems: 'center'}}
                   underlineColor="white"
                 />
-              )}
-            >
+              )}>
               <Login tabLabel={{label: 'LogIn'}} />
               <Signup tabLabel={{label: 'Signup'}} />
             </ScrollableTabView>
@@ -58,19 +62,4 @@ class LoginModule extends Component {
   }
 }
 
-const styless = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover',
-  },
-
-  text: {
-    textAlign: 'center',
-    color: 'white',
-    backgroundColor: 'rgba(0,0,0,0)',
-    fontSize: 32,
-  },
-});
 export default LoginModule;
