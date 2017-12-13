@@ -25,9 +25,10 @@ class Menu extends Component {
     console.log('inc', this.state.count);
     this.props.increments(1)
   }
-  decrements(data) {
+  decrements  = (data) => {
     this.setState({count: this.state.count - data});
     console.log('dec', this.state.count, data);
+    this.props.decrements(1)    
   }
   formateData(data) {
     const row = [];

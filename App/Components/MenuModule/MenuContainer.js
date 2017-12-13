@@ -22,9 +22,12 @@ class MenuContainer extends Component {
       count: 0,
     };
   }
-counter(d) {
-this.setState({count: this.state.count + d})
-}
+  inccounter(d) {
+    this.setState({count: this.state.count + d});
+  }
+  deccounter(d) {
+    this.setState({count: this.state.count - d});
+  }
   render() {
     return (
       <View
@@ -53,8 +56,16 @@ this.setState({count: this.state.count + d})
             />
           )}
         >
-          <Menu tabLabel={{label: 'Veg'}} increments={this.counter.bind(this)}/>
-          <Menu tabLabel={{label: 'Non-Veg'}} increments={this.counter.bind(this)}/>
+          <Menu
+            tabLabel={{label: 'Veg'}}
+            increments={this.inccounter.bind(this)}
+            decrements={this.deccounter.bind(this)}
+          />
+          <Menu
+            tabLabel={{label: 'Non-Veg'}}
+            increments={this.inccounter.bind(this)}
+            decrements={this.deccounter.bind(this)}
+          />
         </ScrollableTabView>
         {this.state.count > 0 ? (
           <View
@@ -109,8 +120,7 @@ this.setState({count: this.state.count + d})
             </View>
           </View>
         ) : (
-          <View>
-          </View>
+          <View />
         )}
       </View>
     );

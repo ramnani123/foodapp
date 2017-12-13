@@ -13,8 +13,7 @@ export class MenuCell extends Component {
   }
 
   increment = () => {
-    this.setState({count: this.state.count + 1}),
-      this.props.increment(1);
+    this.setState({count: this.state.count + 1}), this.props.increment(1);
   };
   decrement = () => {
     if (this.state.count > 0) {

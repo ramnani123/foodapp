@@ -30,8 +30,10 @@ class Row extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Text style={styles.text}>{this.props[0]}</Text>
         <Text style={styles.text}>{this.props[1]}</Text>
+        
       </View>
     );
   }

@@ -26,6 +26,7 @@ const Route = () => (
       titleStyle={styles.navBarTitle}
       tintColor="white"
       hideNavBar={true}
+      initial={true}                              
     >
       <Scene
         key="loginmodule"
@@ -72,7 +73,6 @@ const Route = () => (
         component={MenuContainer}
         title="Menu"
         hideNavBar={false}
-        initial={true}                        
       />
     </Stack>
   </Router>
