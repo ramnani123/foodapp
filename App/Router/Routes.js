@@ -17,67 +17,86 @@ import BookATable from '../Components/HomeModule/BookATableScreen';
 import Home from '../Components/Home';
 import Icon from 'react-native-vector-icons';
 import MenuContainer from '../Components/MenuModule/MenuContainer';
+// import SplashScreen from '../Components/LoginModule/SplashScreen';
 
-const Route = () => (
-  <Router>
-    <Stack
-      key="root"
-      navigationBarStyle={styles.navBar}
-      titleStyle={styles.navBarTitle}
-      tintColor="white"
-      hideNavBar={true}
-      initial={true}                              
-    >
-      <Scene
-        key="loginmodule"
-        component={LoginModule}
-        hideNavBar={true}
-      />
-      <Scene
-        key="tabbar"
-        tabs={true}
-        swipeEnabled={true}
-        hideNavBar={true}
-        showLabel={false}
-        tabBarPosition={'bottom'}
-      >
-        <Scene
-          key="Home"
-          title="Home"
-          component={Home}
-          hideNavBar={false}
-          icon={TabIcon}
-        />
-        <Scene
-          key="Orders"
-          title="My Orders"
-          component={TabBar}
-          hideNavBar={false}
-          icon={TabIcon}
-        />
-      </Scene>
-      <Scene
-        key="qrScreen"
-        component={QRScanning}
-        title="Scan QR Code"
-        hideNavBar={false}
-      />
-      <Scene
-        key="bookfromhome"
-        component={BookATable}
-        title="Book A Table"
-        hideNavBar={false}
-      />
-      <Scene
-        key="menu"
-        component={MenuContainer}
-        title="Menu"
-        hideNavBar={false}
-      />
-    </Stack>
-  </Router>
-);
+class Route extends Component {
+  closeControlPanel = () => {
+    this._drawer.close();
+  };
+  openControlPanel = () => {
+    this._drawer.open();
+  };
 
+  render() {
+    return (
+      <Router>
+        <Stack
+          key="root"
+          navigationBarStyle={styles.navBar}
+          titleStyle={styles.navBarTitle}
+          tintColor="white"
+          hideNavBar={true}
+        >
+          {/* <Scene key="splash" component={SplashScreen} initial={true}
+/> */}
+          <Scene
+            key="loginmodule"
+            component={LoginModule}
+            hideNavBar={true}
+            // type={ActionConst.RESET}
+          />
+          {/* <Drawer
+            key="drawer"
+          > */}
+            <Scene
+              key="tabbar"
+              tabs={true}
+              swipeEnabled={true}
+              // hideNavBar={true}
+              showLabel={false}
+              tabBarPosition={'bottom'}
+              // hideTabBar={true}
+            >
+              <Scene
+                key="Home"
+                title="Home"
+                component={Home}
+                hideNavBar={false}
+                icon={TabIcon}
+              />
+              <Scene
+                key="Orders"
+                title="My Orders"
+                component={TabBar}
+                hideNavBar={false}
+                icon={TabIcon}
+              />
+            </Scene>
+            <Scene
+              key="qrScreen"
+              component={QRScanning}
+              title="Scan QR Code"
+              hideNavBar={false}
+            />
+            <Scene
+              key="bookfromhome"
+              component={BookATable}
+              title="Book A Table"
+              hideNavBar={false}
+              initial={true}              
+            />
+            <Scene
+              key="menu"
+              component={MenuContainer}
+              title="Menu"
+              hideNavBar={false}
+            />
+          {/* </Drawer> */}
+        </Stack>
+      </Router>
+    );
+  }
+}
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: '#FFC538', // changing navbar color

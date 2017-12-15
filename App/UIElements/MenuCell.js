@@ -10,6 +10,7 @@ export class MenuCell extends Component {
       totalCount: 0,
     };
     this.increment.bind(this);
+    console.log('menucell',this.props)
   }
 
   increment = () => {

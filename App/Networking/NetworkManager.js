@@ -5,7 +5,7 @@ import { create } from 'apisauce';
 import { httpMethodes, headers } from '../Constants/Constants';
 
 const baseApi = create({
-    baseURL: 'http://192.168.1.220:4004/',
+    baseURL: 'http://192.168.1.206:4004/',
     timeout: 30000
 })
 

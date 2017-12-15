@@ -1,50 +1,55 @@
 import React, {Component} from 'react';
-import {Text, View, ListView, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  Text,
+  View,
+  ListView,
+  TouchableOpacity,
+  Dimensions,
+  Alert,
+} from 'react-native';
 import {MenuCell} from '../../UIElements/MenuCell';
+import Api from '../../Networking/APIS';
+import request from '../../Actions/ActionCreator';
+import {httpMethodes} from '../../Constants/Constants';
+import {connect} from 'react-redux';
+import {itemsModel} from '../../ItemsData';
+
+var item = [];
 
 class Menu extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    let value = {
-      orders: [
-        {level: 11, description: 'This is SKU 1'},
-        {level: 22, description: 'This is SKU 2'},
-        {level: 33, description: 'This is SKU 3'},
-      ],
-    };
-    const {totalData} = this.formateData(value);
     this.state = {
       count: 0,
-      dataSource: ds.cloneWithRows(totalData),
+      dataSource: ds.cloneWithRows(item),
     };
   }
-
-  increments = (data) => {
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(request(Api.itemsInHotel, httpMethodes.get)).then(response => {
+      const {items} = itemsModel(response);
+      item = items;
+      console.log('sdgasdf', item);
+      this.setState({dataSource: ds.cloneWithRows(item)});
+      if (response.ok) {
+      } else {
+        console.log('sdgasdf', item);
+        console.log('error');
+      }
+    });
+  }
+  increments = data => {
     this.setState({count: this.state.count + data});
     console.log('inc', this.state.count);
-    this.props.increments(1)
-  }
-  decrements  = (data) => {
+    this.props.increments(1);
+  };
+  decrements = data => {
     this.setState({count: this.state.count - data});
     console.log('dec', this.state.count, data);
-    this.props.decrements(1)    
-  }
-  formateData(data) {
-    const row = [];
-    const level = [];
-    const description = [];
-    const totalData = {};
-    const orders = data['orders'].forEach(data => {
-      level.push(data['level']), description.push(data['description']);
-    });
-    if (level.length > 0) {
-      for (i = 0; i < level.length; i++) {
-        totalData[i] = [row.push([i]), level[i], description[i]];
-      }
-    }
-    return {totalData, level, description};
-  }
+    this.props.decrements(1);
+  };
+
   render() {
     return (
       <View
@@ -55,6 +60,7 @@ class Menu extends Component {
         }}
       >
         <ListView
+          enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(data, sectionId, rowId) => (
             <MenuCell
@@ -74,5 +80,9 @@ class Menu extends Component {
     );
   }
 }
-
-export default Menu;
+function mapStateToProps(state) {
+  return {
+    items: state.ItemsReducer,
+  };
+}
+export default connect(mapStateToProps)(Menu);
