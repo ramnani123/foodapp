@@ -22,16 +22,15 @@ const styles = StyleSheet.create({
 class Row extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    console.log(this.props)
   }
   
   render() {
     return (
       <View style={styles.container}>
-
-        <Text style={styles.text}>{this.props[0]}</Text>
-        <Text style={styles.text}>{this.props[1]}</Text>
-        
+        <Text style={styles.text}>{this.props.price}</Text>
+        <Text style={styles.text}>{this.props.id}</Text>
+        {this.props.amountPaid?(<View><Text>Paid</Text></View>):<View><Text>Not paid</Text></View>}
       </View>
     );
   }

@@ -1,43 +1,37 @@
 import React, {Component} from 'react';
 import {Text, View, ListView, StyleSheet} from 'react-native';
 import Row from '../../UIElements/MyOrdersRow';
+import {connect} from 'react-redux';
+import request from '../../Actions/ActionCreator';
+import Api from '../../Networking/APIS';
+import {httpMethodes} from '../../Constants/Constants';
 
+var ds;
 class TabBar extends Component {
+  componentWillMount() {
+    const {dispatch} = this.props;
+    dispatch(request(Api.orderList, httpMethodes.get)).then(response => {
+      console.log(this.props.orders.result.Data)
+      if (response.ok) {
+        this.setState({dataSource: ds.cloneWithRows(this.props.orders.result.Data)})
+      } else {
+        console.log('error');
+      }
+    });
+  }
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    let value = {
-      orders: [
-        {level: 11, description: 'This is SKU 1'},
-        {level: 22, description: 'This is SKU 2'},
-        {level: 33, description: 'This is SKU 3'},
-      ],
-    };
-    const {totalData} = this.formateData(value)
+    ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
     this.state = {
-      dataSource: ds.cloneWithRows(totalData),
+      dataSource: ds.cloneWithRows([]),
     };
-  }
-  
-  formateData(data) {
-    const level = [];
-    const description = [];
-    const totalData = {};
-    const orders = data['orders'].forEach(data => {
-      level.push(data['level']), description.push(data['description']);
-    });
-    if (level.length > 0) {
-      for (i=0; i<level.length; i++) {
-        totalData[i] = [level[i], description[i]]
-        
-      }
-    }
-    return {totalData, level, description};
   }
   render() {
     return (
       <View style={{height: '98%', backgroundColor: 'white', margin: '2%'}}>
         <ListView
+          enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={data => <Row {...data} />}
           renderSeparator={(sectionId, rowId) => (
@@ -49,4 +43,9 @@ class TabBar extends Component {
   }
 }
 
-export default TabBar;
+function mapStateToProps(state) {
+  return {
+    orders: state.ordersReducers,
+  };
+}
+export default connect(mapStateToProps)(TabBar);
