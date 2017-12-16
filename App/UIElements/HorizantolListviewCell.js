@@ -24,15 +24,14 @@ class CircularCell extends Component {
   getRowSelectionStyle(isSelect) {
     if (isSelect) {
       return {
-        width: 55,
-        height: 55,
-        borderRadius: 55 / 2,
+        width: 56,
+        height: 56,
+        borderRadius: 56 / 2,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 5,
         marginRight: 5,
-        backgroundColor: 'red',
-
+        backgroundColor: '#FEC708',
       };
     } else {
       return {
@@ -42,19 +41,53 @@ class CircularCell extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 5,
-        marginRight: 5,
+        padding: 5,
         backgroundColor: '#ffffff',
+        borderWidth: 0.8,
+        borderColor: 'gray',
       };
     }
   }
-
+  getTextColor(isSelect) {
+    if (isSelect) {
+      return {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: 'white',
+      };
+    } else {
+      return {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: 14,
+      };
+    }
+  }
+  dayTimeTextColor(isSelect) {
+    if (isSelect) {
+      return {
+        color: 'white',
+      };
+    } else {
+      return {
+        color: 'gray',
+      };
+    }
+  }
   render() {
     return (
       <View>
         <TouchableOpacity onPress={this.onSelect}>
           <View style={this.getRowSelectionStyle(this.props[3])}>
-            <Text style={styles.textCircle}>{this.props[1]}</Text>
-            <Text color={this.props[3]?'white': 'black'}>{this.props[2]}</Text>
+            <Text style={this.getTextColor(this.props[3])}>
+              {this.props[1]}
+            </Text>
+            <Text style={this.dayTimeTextColor(this.props[3])}>
+              {this.props[2]}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -75,13 +108,12 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
   CircleShapeView: {
-    width: 70,
-    height: 70,
-    borderRadius: 70 / 2,
+    width: 75,
+    height: 75,
+    borderRadius: 75 / 2,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 5,
-    marginRight: 5,
   },
   image: {
     height: 30,
@@ -108,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 14,
     // color: '#007fc8',
   },
   dropdownTextStyle: {

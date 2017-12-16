@@ -12,7 +12,7 @@ import {
 import ModalDropdown from 'react-native-modal-dropdown';
 import Slider from 'react-native-slider';
 import CircularCell from '../../UIElements/HorizantolListviewCell';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 var totalData2 = [];
 var ds2;
@@ -25,44 +25,19 @@ export default class BookATable extends Component {
     ds1 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     ds2 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    let value = {
-      orders: [
-        {
-          level: 11,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg',
-        },
-        {
-          level: 22,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg',
-        },
-        {
-          level: 33,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg',
-        },
-        {
-          level: 11,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg',
-        },
-        {
-          level: 22,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg?$PDP_Primary_936x650$:00',
-        },
-        {
-          level: 33,
-          description:
-            'https://images2.roomstogo.com/is/image/roomstogo/dr_tbl_8218211p_brynwood_black~Brynwood-Black-Round-Table.jpeg?$PDP_Primary_936x650$:00',
-        },
-      ],
-    };
+    let value = [
+      {
+        url: require('../../Images/TableImages/table2.png'),
+      },
+      {
+        url: require('../../Images/TableImages/table4.png'),
+      },
+      {
+        url: require('../../Images/TableImages/table6.png'),
+      },
+    ];
     let value1 = {
       orders1: [
-        {level: 14, description: 'thu', tk: false},
-        {level: 15, description: 'fri', tk: false},
         {level: 16, description: 'sat', tk: false},
         {level: 17, description: 'sun', tk: false},
         {level: 18, description: 'mon', tk: false},
@@ -110,38 +85,23 @@ export default class BookATable extends Component {
       ],
     };
 
-    const {totalData} = this.formateData(value);
     const {totalData1} = this.formateData1(value1);
     const {totalData2} = this.formateData2(value2);
 
     this.state = {
       value: 1,
       count: 0,
-      dataSource: ds.cloneWithRows(totalData),
+      dataSource: ds.cloneWithRows(value),
       dataSource1: ds1.cloneWithRows(totalData1),
       dataSource2: ds2.cloneWithRows(totalData2),
       bgColor: 'white',
     };
   }
-  
+
   confirm() {
-    Actions.bookConfirm()
-  }  
-  formateData(data) {
-    const row = [];
-    const level = [];
-    const description = [];
-    const totalData = {};
-    const orders = data['orders'].forEach(data => {
-      level.push(data['level']), description.push(data['description']);
-    });
-    if (level.length > 0) {
-      for (i = 0; i < level.length; i++) {
-        totalData[i] = [(row[i] = i), level[i], description[i]];
-      }
-    }
-    return {totalData, level, description};
+    Actions.bookConfirm();
   }
+
   formateData1(data) {
     const row = [];
     const level = [];
@@ -184,7 +144,7 @@ export default class BookATable extends Component {
     this.setState({dataSource2: ds2.cloneWithRows(totalData2)});
   };
   onSelectDate = data => {
-    console.log(data)
+    console.log(data);
     for (i = 0; i < totalData1.length; i++) {
       if (data[0] != i) {
         totalData1[i][3] = false;
@@ -194,7 +154,7 @@ export default class BookATable extends Component {
     }
     this.setState({dataSource1: ds1.cloneWithRows(totalData1)});
   };
-  
+
   render() {
     let hotelsArray = [
       'Knife&Fork',
@@ -207,126 +167,207 @@ export default class BookATable extends Component {
       <View style={styles.container}>
         <View
           style={{
+            height: Dimensions.get('window').height / 7,
             width: Dimensions.get('window').width * 0.9,
-          }}
-        >
-          <Text style={styles.textHeading}> Choose a Hotel</Text>
-        </View>
-        <View style={styles.bgView}>
-          <ModalDropdown
-            defaultValue={' Please select hotel '}
-            dropdownTextStyle={styles.dropdownTextStyle}
-            options={hotelsArray}
-            dropdownStyle={styles.dropdownStyle}
-            style={styles.dropdownFeild}
-          />
-          <Image
-            source={require('../../Assets/dropdown_arrow.png')}
-            style={styles.image}
-          />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            width: Dimensions.get('window').width * 0.9,
-          }}
-        >
-          <Text style={styles.textHeading}>Choose a Table</Text>
-        </View>
-        <ListView
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-          dataSource={this.state.dataSource}
-          renderRow={rowData => (
-            <Image
-              style={{width: 75, height: 75, margin: 15}}
-              source={{uri: rowData[2]}}
-            />
-          )}
-        />
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            width: Dimensions.get('window').width * 0.9,
-          }}
-        >
-          <Text style={styles.textHeading}>Number of Persons </Text>
-          <Text style={styles.textConfirm}>
-            {parseInt(this.state.value)}
-          </Text>
-        </View>
-        <View style={{width: Dimensions.get('window').width * 0.9}}>
-          <Slider
-            minimumValue={0}
-            maximumValue={10}
-            minimumTrackTintColor={'#007fc8'}
-            thumbTintColor={'#007fc8'}
-            width={Dimensions.get('window').width * 0.9}
-            value={this.state.value}
-            onValueChange={value => this.setState({value})}
-          />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            width: Dimensions.get('window').width * 0.9,
-          }}
-        >
-          <Text style={styles.textHeading}>Pick a date </Text>
-          <Text style={{fontWeight: 'bold',
-    fontSize: 15,
-    color: '#007fc8', textAlign: 'right', width: Dimensions.get('window').width*0.4}}>December 2017</Text>
-        </View>
-        <ListView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          dataSource={this.state.dataSource1}
-          renderRow={rowData => (
-            <CircularCell
-              {...rowData}
-              onSelect={this.onSelectDate.bind(this)}
-            />
-          )}
-        />
-        <View style={{width: Dimensions.get('window').width * 0.9}}>
-          <Text style={styles.textHeading}>Time</Text>
-        </View>
-        <ListView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          dataSource={this.state.dataSource2}
-          renderRow={rowData => (
-            <CircularCell
-              {...rowData}
-              onSelect={this.onSelectTime.bind(this)}
-            />
-          )}
-        />
-        <View
-          style={{
-            width: Dimensions.get('window').width * 0.9,
-            alignItems: 'center',
-            height: 44,
             justifyContent: 'center',
           }}
         >
-          <TouchableOpacity onPress={this.confirm}>
-            <View
+          <Text style={styles.textHeading}> Choose a Hotel</Text>
+          <View style={styles.bgView}>
+            <ModalDropdown
+              defaultValue={' Please select hotel '}
+              dropdownTextStyle={styles.dropdownTextStyle}
+              options={hotelsArray}
+              dropdownStyle={styles.dropdownStyle}
+              style={styles.dropdownFeild}
+            />
+            <Image
+              source={require('../../Assets/dropdown_arrow.png')}
+              style={styles.image}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: Dimensions.get('window').height / 6.5,
+            width: Dimensions.get('window').width * 0.9,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              width: Dimensions.get('window').width * 0.9,
+            }}
+          >
+            <Text style={styles.textHeading}>Choose a Table</Text>
+          </View>
+          <View
+            style={{
+              height: 100,
+              width: Dimensions.get('window').width * 0.9,
+            }}
+          >
+            <ListView
+              enableEmptySections={true}
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              dataSource={this.state.dataSource}
+              renderRow={rowData => (
+                (
+                  <View>
+                    <Image
+                      source={rowData.url}
+                      style={{
+                        height: 100,
+                        width: 100,
+                        marginRight: 15,
+                        resizeMode: Image.resizeMode.contain,
+                      }}
+                    />
+                  </View>
+                )
+              )}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: Dimensions.get('window').height / 6.5,
+            width: Dimensions.get('window').width * 0.9,
+            justifyContent: 'center',
+          }}
+        >
+          <View
+            style={{
+              width: Dimensions.get('window').width * 0.9,
+              marginTop: 10,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Text style={styles.textHeading}>Number of Persons </Text>
+            <Text style={styles.textConfirm}>{parseInt(this.state.value)}</Text>
+          </View>
+          <View
+            style={{
+              width: Dimensions.get('window').width * 0.9,
+            }}
+          >
+            <Slider
+              minimumValue={0}
+              maximumValue={10}
+              minimumTrackTintColor={'black'}
+              thumbTintColor={'lightgray'}
+              width={Dimensions.get('window').width * 0.9}
+              height={44}
+              value={this.state.value}
+              onValueChange={value => this.setState({value})}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: Dimensions.get('window').height / 6.5,
+            width: Dimensions.get('window').width * 0.9,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              width: Dimensions.get('window').width * 0.9,
+            }}
+          >
+            <Text style={styles.textHeading}>Pick a date </Text>
+            <Text
               style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'white',
-                width: Dimensions.get('window').width * 0.5,
-                height: 44,
-                borderRadius: 22,
+                fontWeight: 'bold',
+                fontSize: 15,
+                color: 'gray',
+                textAlign: 'right',
+                width: Dimensions.get('window').width * 0.4,
               }}
             >
-              <Text style={styles.textConfirm}>Confirm</Text>
-            </View>
-          </TouchableOpacity>
+              December 2017
+            </Text>
+          </View>
+          <View style={{height: 70, paddingRight: 15, marginTop: 4}}>
+            <ListView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              dataSource={this.state.dataSource1}
+              renderRow={rowData => (
+                <CircularCell
+                  {...rowData}
+                  onSelect={this.onSelectDate.bind(this)}
+                />
+              )}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: Dimensions.get('window').height / 6.5,
+            width: Dimensions.get('window').width * 0.9,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View style={{width: Dimensions.get('window').width * 0.9}}>
+            <Text style={styles.textHeading}>Time</Text>
+          </View>
+          <View style={{height: 70, paddingRight: 15, marginTop: 4}}>
+            <ListView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              dataSource={this.state.dataSource2}
+              renderRow={rowData => (
+                <CircularCell
+                  {...rowData}
+                  onSelect={this.onSelectTime.bind(this)}
+                />
+              )}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: Dimensions.get('window').height / 6.5,
+            width: Dimensions.get('window').width * 0.9,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              height: Dimensions.get('window').height / 9.5,
+              width: Dimensions.get('window').width * 0.9,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <TouchableOpacity onPress={this.confirm}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'white',
+                  width: Dimensions.get('window').width * 0.5,
+                  height: 44,
+                  borderRadius: 22,
+                  borderWidth: 2,
+                  borderColor: 'black',
+                  shadowColor: 'black',
+                  shadowRadius: 2,
+                }}
+              >
+                <Text style={styles.textConfirm}>Confirm</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -343,8 +384,6 @@ const styles = StyleSheet.create({
   bgView: {
     width: Dimensions.get('window').width * 0.82,
     flexDirection: 'row',
-    margin: 10,
-    marginTop: 0,
     borderColor: 'black',
   },
   CircleShapeView: {
@@ -353,8 +392,6 @@ const styles = StyleSheet.create({
     borderRadius: 70 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 5,
-    marginRight: 5,
   },
   image: {
     height: 30,
@@ -365,24 +402,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     color: 'black',
-    marginBottom: 8,
+    marginBottom: 10,
+    marginTop: 8
   },
   textConfirm: {
     fontWeight: 'bold',
-    fontSize: 15,
-    color: '#007fc8',
+    fontSize: 18,
+    color: 'black',
   },
   dropdownFeild: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
     width: Dimensions.get('window').width * 0.8,
     height: 30,
+    marginBottom: 10,
     justifyContent: 'center',
   },
   textCircle: {
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 12,
     color: '#007fc8',
   },
   dropdownTextStyle: {
@@ -390,11 +429,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0)',
     height: 44,
     width: '100%',
-    paddingLeft: 10,
   },
   dropdownStyle: {
     width: Dimensions.get('window').width * 0.85,
-    marginTop: 8,
     borderWidth: 2,
   },
 });

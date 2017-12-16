@@ -42,6 +42,7 @@ class Menu extends Component {
       >
         <ListView
           enableEmptySections={true}
+          showsVerticalScrollIndicator={false}
           dataSource={this.state.dataSource}
           renderRow={(data, sectionId, rowId) => (
             <MenuCell

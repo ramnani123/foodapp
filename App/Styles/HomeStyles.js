@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     button: {
+        flexDirection: 'row',
         borderRadius: 5,
         backgroundColor: 'white',
         justifyContent: 'center',

@@ -17,24 +17,48 @@ class ThanksForRegistration extends Component {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={{
-              uri:
-                'https://st.depositphotos.com/1865899/1821/v/950/depositphotos_18213615-stock-illustration-like-thumbs-up-symbol-icon.jpg',
-            }}
+            source={require('../../Images/TableImages/success.png')}
           />
         </View>
 
         <Text style={styles.buttontext2}> Thank you</Text>
-        <Text style={styles.buttontext2}> for Registrations!</Text>
+        <Text style={styles.buttontext2}> For Registration!</Text>
 
         <Text style={styles.buttontext}>
-          your booking has been confirmed for saturday 9th Dec ,2017 at
+          Your booking has been confirmed for saturday 9th Dec ,2017 at
           06:00PM.Tou have booked table for 4 seat
         </Text>
-
-        <Text style={styles.buttontex2}>Book More Table</Text>
-
-        <Text style={styles.buttontext2}>Home</Text>
+        <TouchableOpacity>
+          <View
+            style={{
+              width: Dimensions.get('window').width * 0.4,
+              height: 44,
+              backgroundColor: 'black',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 22,
+              borderWidth: 1,
+            }}
+          >
+            <Text style={{color: 'white', fontWeight: 'bold'}}>Book More Table</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View
+            style={{
+              width: Dimensions.get('window').width * 0.4,
+              height: 44,
+              backgroundColor: 'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 22,
+              borderWidth: 1,
+              margin: 8
+            }}
+          >
+            <Text style={styles.buttontext2}>Home</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -42,12 +66,15 @@ class ThanksForRegistration extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
     margin: 20,
   },
   logo: {
-    width: 250,
-    height: 250,
+    resizeMode: Image.resizeMode.contain,
+    margin: 15,
+    width: Dimensions.get('window').width * 0.8,
+    height: Dimensions.get('window').height * 0.4,
   },
   logoContainer: {
     marginBottom: 30,
@@ -66,8 +93,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   buttontext: {
+    margin: 15,
     textAlign: 'center',
-    color: '#007fc8',
+    color: 'black',
     fontWeight: '700',
   },
   textLayout: {
@@ -76,8 +104,8 @@ const styles = StyleSheet.create({
   },
   buttontext2: {
     textAlign: 'center',
-    color: '#007fc8',
-    fontSize: 20,
+    color: 'black',
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });

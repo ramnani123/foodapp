@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import styles from '../Styles/HomeStyles';
@@ -31,14 +32,16 @@ class Home extends Component {
           }}
         >
           <View style={styles.button}>
-            <Text>QRCode</Text>
+            <Image source={require('../Images/scan.png')} style={{height: 75, width: 75, marginRight: 15}}/>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>QUICK SCAN</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={this.onClickBookFromHome}
         >
           <View style={styles.button}>
-            <Text>BookTable</Text>
+          <Image source={require('../Images/booktable.png')} style={{height: 75, width: 75, marginRight: 15}}/>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>BOOK A TABLE</Text>
           </View>
         </TouchableOpacity>
       </View>
