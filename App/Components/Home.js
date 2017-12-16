@@ -15,7 +15,7 @@ class Home extends Component {
   }
 
   onClickQRScan() {
-    Actions.qrScreen();
+    Actions.menu();
   }
 
   onClickBookFromHome() {
@@ -35,9 +35,7 @@ class Home extends Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
-            this.onClickBookFromHome();
-          }}
+          onPress={this.onClickBookFromHome}
         >
           <View style={styles.button}>
             <Text>BookTable</Text>

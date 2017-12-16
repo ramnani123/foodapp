@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, Dimensions} from 'react-native';
+import {Text, View, TouchableOpacity, Image} from 'react-native';
 
-export class MenuCell extends Component {
+export default class EditOrdersCell extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    console.log(this.props)
+        this.state = {
       count: 0,
       selectedRow: [],
       totalCount: 0,
@@ -12,16 +13,15 @@ export class MenuCell extends Component {
     this.increment.bind(this);
   }
 
-  increment = () => {
-    this.setState({count: this.state.count + 1}),
-      this.props.increment(1, this.props);
-  };
-  decrement = () => {
-    if (this.state.count > 0) {
-      this.setState({count: this.state.count - 1});
-      this.props.decrement(1, this.props);
-    }
-  };
+    increment = () => {
+      this.setState({count: this.state.count + 1}), this.props.increment(1,this.props);
+    };
+    decrement = () => {
+      if (this.state.count > 0) {
+        this.setState({count: this.state.count - 1});
+        this.props.decrement(1,this.props);
+      }
+    };
 
   render() {
     return (
@@ -31,11 +31,9 @@ export class MenuCell extends Component {
           marginLeft: 15,
           marginTop: 15,
           marginBottom: 15,
-          width: Dimensions.get('window').width,
-          backgroundColor: 'white',
         }}
       >
-        <View style={{width: Dimensions.get('window').width*0.85}}>
+        <View style={{width: '85%'}}>
           <Text style={{margin: 4}}>{this.props.item_name}</Text>
           <Text style={{margin: 4, color: 'gray'}}>{this.props.item_name}</Text>
           <View style={{flexDirection: 'row'}}>
@@ -72,8 +70,15 @@ export class MenuCell extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
         <View style={{margin: 4}}>
           <Text>{this.props.price}</Text>
+        </View>
+        <TouchableOpacity>
+          <View>
+            <Image source={require('../Images/delete.png')} style={{width: 30, height: 30}} />
+          </View>
+        </TouchableOpacity>
         </View>
       </View>
     );

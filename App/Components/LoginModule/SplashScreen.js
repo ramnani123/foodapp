@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Image,
+  Dimensions,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 500,
-    height: 500,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   logoContainer: {
     flexGrow: 1,

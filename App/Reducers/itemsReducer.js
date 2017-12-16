@@ -17,13 +17,14 @@ export function ItemsReducer(state = initialState, action) {
         case APIActions.Get_Data:
             return {
                 ...state,
-                getItems: true,
+                getItems: false,
                 result: []
             }
         case APIActions.Get_Data_Success:
+        console.log(action.data)
             return {
                 ...state,
-                getItems: false,
+                getItems: true,
                 result: action.data
             };
         case APIActions.Get_Data_Error:

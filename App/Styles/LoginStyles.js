@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'white',
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     justifyContent: 'center',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.3,
     alignItems: 'center',
     justifyContent: 'center',
-    // paddingTop: Dimensions.get('window').height * 0.08,    
+    paddingTop: Dimensions.get('window').height * 0.08,    
   },
   backgroundImage: {
     backgroundColor: 'red',

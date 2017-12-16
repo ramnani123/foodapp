@@ -18,10 +18,10 @@ class LoginModule extends Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <Image
+        {/* <Image
           source={require('../../Images/foodappBackground.png')}
           style={styles.backgroundImage}
-        />
+        /> */}
         <KeyboardAwareScrollView
           keyboardOpeningTime={100}
           scrollEnabled={false}
@@ -32,7 +32,7 @@ class LoginModule extends Component {
             style={{
               height: Dimensions.get('window').height * 0.3,
               width: Dimensions.get('window').width,
-              paddingTop: 15,
+              paddingTop: 30,
             }}
           >
             <View style={styles.imageView}>
@@ -42,14 +42,14 @@ class LoginModule extends Component {
               />
             </View>
           </View>
-          <View style={{height: Dimensions.get('window').height * 0.6}}>
+          <View style={{height: Dimensions.get('window').height * 0.7, paddingTop: 75}}>
             <ScrollableTabView
-              tabBarActiveTextColor="white"
+              tabBarActiveTextColor="#FFC538"
               renderTabBar={() => (
                 <TabBar
                   tabMargin={Dimensions.get('window').width * 0.25}
                   tabBarStyle={{justifyContent: 'center', alignItems: 'center'}}
-                  underlineColor="white"
+                  underlineColor="#FFC538"
                 />
               )}>
               <Login tabLabel={{label: 'LogIn'}} />

@@ -24,9 +24,7 @@ class Row extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
-      console.log(this.props)
-  }
+  
   render() {
     return (
       <View style={styles.container}>
