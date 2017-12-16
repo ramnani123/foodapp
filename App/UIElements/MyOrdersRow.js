@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,18 +22,36 @@ const styles = StyleSheet.create({
 class Row extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
+    console.log(this.props);
   }
-  
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{this.props.price}</Text>
-        <Text style={styles.text}>{this.props.id}</Text>
-        {this.props.amountPaid?(<View><Text>Paid</Text></View>):<View><Text>Not paid</Text></View>}
+      <View style={styles.cell}>
+      <View style={styles.detailsView}>
+        <Text style={styles.text}>HotelName}</Text>
+        <Text style={styles.text}>Date</Text>
+        <Text style={{}}>No.of People</Text>
+        </View>
+        <View style={styles.timeAndActive}>
+        <Text>Time</Text>
+          </View>
       </View>
     );
   }
 }
-
+const styles = StyleSheet.create({
+  cell: {
+    width: Dimensions.get('window').width,
+    padding: 8,
+    flexDirection: 'row',
+  },
+  detailsView: {
+    width: Dimensions.get('window').width * 0.8,
+  },
+  timeAndActive: {
+    width: Dimensions.get('window').width * 0.2,
+  },
+ 
+});
 export default Row;
